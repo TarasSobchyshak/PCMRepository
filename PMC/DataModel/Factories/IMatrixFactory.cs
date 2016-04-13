@@ -1,35 +1,43 @@
-﻿using System.Collections.Generic;
+﻿using DataModel.Models.Matrices;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DataModel.Factories
 {
     public interface IMatrixFactory<T>
     {
-        Matrix<Point1D<T>> CreateMatrixX();
-        Matrix<Point2D<T>> CreateMatrixXY();
-        Matrix<Point3D<T>> CreateMatrixXYZ();
+        MatrixX<T> CreateMatrixX(int positionCount, int pointCount);
+        MatrixXY<T> CreateMatrixXY(int positionCount, int pointCount);
+        MatrixXYZ<T> CreateMatrixXYZ(int positionCount, int pointCount);
     }
 
     public class DefaultMatrixFactory<T> : IMatrixFactory<T>
     {
-        public Matrix<Point1D<T>> CreateMatrixX()
+        public DefaultMatrixFactory()
         {
-            List<Position<Point1D<T>>> points = new List<Position<Point1D<T>>>();
-            // to do
-            return new Matrix<Point1D<T>>(points);
+            _positionFactory = new DefaultPositionFactory<T>();
         }
 
-        public Matrix<Point2D<T>> CreateMatrixXY()
+        private IPositionFactory<T> _positionFactory;
+        public MatrixX<T> CreateMatrixX(int positionCount, int pointCount)
         {
-            List<Position<Point2D<T>>> points = new List<Position<Point2D<T>>>();
-            // to do
-            return new Matrix<Point2D<T>>(points);
+            var positions = Enumerable.Range(1, positionCount)
+                .Select(r => _positionFactory.CreatePositionX(pointCount));
+            return new MatrixX<T>(positions.ToArray());
         }
 
-        public Matrix<Point3D<T>> CreateMatrixXYZ()
+        public MatrixXY<T> CreateMatrixXY(int positionCount, int pointCount)
         {
-            List<Position<Point3D<T>>> points = new List<Position<Point3D<T>>>();
-            // to do
-            return new Matrix<Point3D<T>>(points);
+            var positions = Enumerable.Range(1, positionCount)
+                .Select(r => _positionFactory.CreatePositionXY(pointCount));
+            return new MatrixXY<T>(positions.ToArray());
+        }
+
+        public MatrixXYZ<T> CreateMatrixXYZ(int positionCount, int pointCount)
+        {
+            var positions = Enumerable.Range(1, positionCount)
+                .Select(r => _positionFactory.CreatePositionXYZ(pointCount));
+            return new MatrixXYZ<T>(positions.ToArray());
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace DataModel
+﻿namespace DataModel.Models.Points
 {
     /// <summary>
     /// Represents a numarical pair (x, y).

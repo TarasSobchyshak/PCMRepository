@@ -1,35 +1,34 @@
-﻿using System.Collections.Generic;
+﻿using DataModel.Models.Points;
+using DataModel.Models.Positions;
+using System.Linq;
 
 namespace DataModel.Factories
 {
     public interface IPositionFactory<T>
     {
-        Position<Point1D<T>> CreatePositionX();
-        Position<Point2D<T>> CreatePositionXY();
-        Position<Point3D<T>> CreatePositionXYZ();
+        PositionX<T> CreatePositionX(int pointsCount);
+        PositionXY<T> CreatePositionXY(int pointsCount);
+        PositionXYZ<T> CreatePositionXYZ(int pointsCount);
     }
 
     public class DefaultPositionFactory<T> : IPositionFactory<T>
     {
-        public Position<Point1D<T>> CreatePositionX()
+        public PositionX<T> CreatePositionX(int pointsCount)
         {
-            List<Point1D<T>> points = new List<Point1D<T>>();
-            // to do
-            return new Position<Point1D<T>>(points);
+            var points = Enumerable.Range(1, pointsCount).Select(r => new Point1D<T>());
+            return new PositionX<T>(points.ToArray());
         }
 
-        public Position<Point2D<T>> CreatePositionXY()
+        public PositionXY<T> CreatePositionXY(int pointsCount)
         {
-            List<Point2D<T>> points = new List<Point2D<T>>();
-            // to do
-            return new Position<Point2D<T>>(points);
+            var points = Enumerable.Range(1, pointsCount).Select(r => new Point2D<T>());
+            return new PositionXY<T>(points.ToArray());
         }
 
-        public Position<Point3D<T>> CreatePositionXYZ()
+        public PositionXYZ<T> CreatePositionXYZ(int pointsCount)
         {
-            List<Point3D<T>> points = new List<Point3D<T>>();
-            // to do
-            return new Position<Point3D<T>>(points);
+            var points = Enumerable.Range(1, pointsCount).Select(r => new Point3D<T>());
+            return new PositionXYZ<T>(points.ToArray());
         }
     }
 }

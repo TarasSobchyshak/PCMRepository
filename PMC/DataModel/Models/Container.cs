@@ -1,30 +1,33 @@
-﻿using DataModel.Interfaces;
+﻿using DataModel.Models.Matrices;
+using DataModel.Models.Points;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
-namespace DataModel
+namespace DataModel.Models
 {
     /// <summary>
     /// Represents a strongly typed collection of matrices that can be accessed by index or via <see cref="IEnumerable"/>.
     /// </summary>
     /// <typeparam name="T">Type of point's coordinates.</typeparam>
-    public class Container<T> : IEnumerable<Matrix<IPoint<T>>>
+    /// <typeparam name="PointT"></typeparam>
+    public class Container<PointT, T> : IEnumerable<Matrix<PointT, T>> where PointT : class, IPoint<T>
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="Container{T}"/>
+        /// Initializes a new instance of <see cref="Container{PointT, T}"/>
         /// </summary>
         /// <param name="matrices">A list whose elements are copied to new collection</param>
-        public Container(IList<Matrix<IPoint<T>>> matrices)
+        public Container(Matrix<PointT, T>[] matrices)
         {
             _matrices = matrices;
         }
 
-        private IList<Matrix<IPoint<T>>> _matrices { set; get; }
+        private Matrix<PointT, T>[] _matrices { set; get; }
 
         /// <summary>
         /// Accessor for accessing data by index.
         /// </summary>
-        public Matrix<IPoint<T>> this[int i]
+        public Matrix<PointT, T> this[int i]
         {
             get { return _matrices[i]; }
         }
@@ -32,14 +35,14 @@ namespace DataModel
         /// <summary>
         /// Accessor for accessing data via IEnumerable.
         /// </summary>
-        public IEnumerator<Matrix<IPoint<T>>> GetEnumerator()
+        public IEnumerator<Matrix<PointT, T>> GetEnumerator()
         {
-            return _matrices.GetEnumerator();
+            return ((IEnumerable<Matrix<PointT, T>>)_matrices).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _matrices.GetEnumerator();
+            return ((IEnumerable<Matrix<PointT, T>>)_matrices).GetEnumerator();
         }
     }
 }

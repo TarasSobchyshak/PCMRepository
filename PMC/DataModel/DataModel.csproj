@@ -33,7 +33,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,14 +46,20 @@
     <Compile Include="Factories\IContainersCollectionFactory.cs" />
     <Compile Include="Factories\IMatrixFactory.cs" />
     <Compile Include="Factories\IPositionFactory.cs" />
-    <Compile Include="Interfaces\IPoint.cs" />
+    <Compile Include="Models\Points\IPoint.cs" />
     <Compile Include="Models\Container.cs" />
     <Compile Include="Models\ContainersCollection.cs" />
-    <Compile Include="Models\Matrix.cs" />
-    <Compile Include="Models\Point1D.cs" />
-    <Compile Include="Models\Point2D.cs" />
-    <Compile Include="Models\Point3D.cs" />
-    <Compile Include="Models\Position.cs" />
+    <Compile Include="Models\Matrices\MatrixXYZ.cs" />
+    <Compile Include="Models\Matrices\MatrixXY.cs" />
+    <Compile Include="Models\Matrices\MatrixX.cs" />
+    <Compile Include="Models\Matrices\Matrix.cs" />
+    <Compile Include="Models\Points\Point1D.cs" />
+    <Compile Include="Models\Points\Point2D.cs" />
+    <Compile Include="Models\Points\Point3D.cs" />
+    <Compile Include="Models\Positions\Position.cs" />
+    <Compile Include="Models\Positions\PositionXYZ.cs" />
+    <Compile Include="Models\Positions\PositionXY.cs" />
+    <Compile Include="Models\Positions\PositionX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

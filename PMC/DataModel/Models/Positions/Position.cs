@@ -1,33 +1,37 @@
-﻿using System.Collections;
+﻿using DataModel.Models.Points;
+using System.Collections;
 using System.Collections.Generic;
 
-namespace DataModel
+namespace DataModel.Models.Positions
 {
     /// <summary>
     /// Represents a strongly typed collection of points that can be accessed by index or via <see cref="IEnumerable"/>.
     /// </summary>
-    public class Position<IPoint> : IEnumerable<IPoint>
+    public abstract class Position<PointT, T> : IEnumerable<PointT> where PointT : IPoint<T>
     {
+        /// <summary>
+        /// Initializes a new instance of <see cref="Position{PointT, T}"/>
+        /// </summary>
         public Position()
         {
             // position can contain 0 points
-            _points = null;
+            _points = new PointT[0];
         }
         /// <summary>
-        /// Initializes a new instance of <see cref="Position{IPoint}"/>
+        /// Initializes a new instance of <see cref="Position{PointT, T}"/>
         /// </summary>
         /// <param name="points">A list whose elements are copied to new collection</param>
-        public Position(IList<IPoint> points)
+        public Position(PointT[] points)
         {
             _points = points;
         }
 
-        private IList<IPoint> _points { set; get; }
+        private PointT[] _points { set; get; }
 
         /// <summary>
         /// Accessor for accessing data by index.
         /// </summary>
-        public IPoint this[int i]
+        public IPoint<T> this[int i]
         {
             get { return _points[i]; }
         }
@@ -35,14 +39,15 @@ namespace DataModel
         /// <summary>
         /// Accessor for accessing data via IEnumerable.
         /// </summary>
-        public IEnumerator GetEnumerator()
+        public IEnumerator<PointT> GetEnumerator()
         {
-            return _points.GetEnumerator();
+            return ((IEnumerable<PointT>)_points).GetEnumerator();
         }
 
-        IEnumerator<IPoint> IEnumerable<IPoint>.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            return _points.GetEnumerator();
+            return ((IEnumerable<PointT>)_points).GetEnumerator();
         }
+
     }
 }
