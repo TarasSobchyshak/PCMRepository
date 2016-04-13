@@ -12,12 +12,12 @@ namespace DataModel
         /// Initializes a new instance of <see cref="Matrix{IPoint}"/>
         /// </summary>
         /// <param name="positions">A list whose elements are copied to new collection</param>
-        public Matrix(List<Position<IPoint>> positions)
+        public Matrix(IList<Position<IPoint>> positions)
         {
             _positions = positions;
         }
 
-        private List<Position<IPoint>> _positions { set; get; }
+        private IList<Position<IPoint>> _positions { set; get; }
 
         /// <summary>
         /// Accessor for accessing data by index.

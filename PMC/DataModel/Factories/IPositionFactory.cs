@@ -2,14 +2,14 @@
 
 namespace DataModel.Factories
 {
-    internal interface IPositionFactory<T>
+    public interface IPositionFactory<T>
     {
         Position<Point1D<T>> CreatePositionX();
         Position<Point2D<T>> CreatePositionXY();
         Position<Point3D<T>> CreatePositionXYZ();
     }
 
-    internal class DefaultPositionFactory<T> : IPositionFactory<T>
+    public class DefaultPositionFactory<T> : IPositionFactory<T>
     {
         public Position<Point1D<T>> CreatePositionX()
         {

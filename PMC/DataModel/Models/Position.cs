@@ -8,16 +8,21 @@ namespace DataModel
     /// </summary>
     public class Position<IPoint> : IEnumerable<IPoint>
     {
+        public Position()
+        {
+            // position can contain 0 points
+            _points = null;
+        }
         /// <summary>
         /// Initializes a new instance of <see cref="Position{IPoint}"/>
         /// </summary>
         /// <param name="points">A list whose elements are copied to new collection</param>
-        public Position(List<IPoint> points)
+        public Position(IList<IPoint> points)
         {
             _points = points;
         }
 
-        private List<IPoint> _points { set; get; }
+        private IList<IPoint> _points { set; get; }
 
         /// <summary>
         /// Accessor for accessing data by index.

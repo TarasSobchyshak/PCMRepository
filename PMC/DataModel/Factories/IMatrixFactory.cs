@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace DataModel.Factories
 {
-
-    internal interface IMatrixFactory<T>
+    public interface IMatrixFactory<T>
     {
         Matrix<Point1D<T>> CreateMatrixX();
         Matrix<Point2D<T>> CreateMatrixXY();

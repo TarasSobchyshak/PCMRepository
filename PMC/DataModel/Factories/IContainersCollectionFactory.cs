@@ -1,17 +1,19 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace DataModel.Factories
 {
-    public interface IContainersCollectionFactory
+    public interface IContainersCollectionFactory<T>
     {
-        void Create();
+        ContainersCollection<T> Create();
     }
 
-    public class DefaultContainersCollectionFactory : IContainersCollectionFactory
+    public class DefaultContainersCollectionFactory<T> : IContainersCollectionFactory<T>
     {
-        public void Create()
+        public ContainersCollection<T> Create()
         {
-            throw new NotImplementedException();
+            List<Container<T>> containers = new List<Container<T>>();
+            //to do
+            return new ContainersCollection<T>(containers);
         }
     }
 }
