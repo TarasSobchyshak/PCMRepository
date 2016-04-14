@@ -1,51 +1,34 @@
-﻿using DataModel.Models.Points;
-using DataModel.Models.Positions;
+﻿using DataModel.Models.Positions;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 
 namespace DataModel.Models.Matrices
 {
     /// <summary>
-    /// Represents a strongly typed collection of positions that can be accessed by index or via <see cref="IEnumerable"/>.
+    /// Represents a collection of positions that can be accessed by index or via <see cref="IEnumerable{Position}"/>.
     /// </summary>
-    public abstract class Matrix<PointT, T> : IEnumerable<Position<PointT, T>> where PointT : IPoint<T>
+    public abstract class Matrix<T> : IEnumerable<Position<T>> where T : struct
     {
-        /// <summary>
-        /// Initializes a new instance of <see cref="Matrix{PointT, T}"/>
-        /// </summary>
-        /// <param name="positions">A list whose elements are copied to new collection</param>
-        public Matrix(Position<PointT, T>[] positions)
+        public Matrix(params Position<T>[] positions)
         {
             _positions = positions;
         }
 
-        protected Position<PointT, T>[] _positions { set; get; }
+        protected Position<T>[] _positions;
 
-        /// <summary>
-        /// Accessor for accessing data by index.
-        /// </summary>
-        public Position<PointT, T> this[int i]
+        public Position<T> this[int i]
         {
             get { return _positions[i]; }
         }
 
-        /// <summary>
-        /// Accessor for accessing data via IEnumerable.
-        /// </summary>
-        public IEnumerator<Position<PointT, T>> GetEnumerator()
+        public IEnumerator<Position<T>> GetEnumerator()
         {
-            return ((IEnumerable<Position<PointT, T>>)_positions).GetEnumerator();
+            return ((IEnumerable<Position<T>>)_positions).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IEnumerable<Position<PointT, T>>)_positions).GetEnumerator();
-        }
-
-        public static implicit operator Matrix<PointT, T>(MatrixXYZ<double> v)
-        {
-            throw new NotImplementedException();
+            return ((IEnumerable<Position<T>>)_positions).GetEnumerator();
         }
     }
 }

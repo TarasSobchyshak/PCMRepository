@@ -1,11 +1,10 @@
-﻿using DataModel.Models.Points;
-using DataModel.Models.Positions;
+﻿using DataModel.Models.Positions;
 
 namespace DataModel.Models.Matrices
 {
-    public class MatrixX<T> : Matrix<Point1D<T>, T>
+    public class MatrixX<T> : Matrix<T> where T: struct
     {
-        public MatrixX(PositionX<T>[] positions): base(positions)
+        public MatrixX(params PositionX<T>[] positions) : base(positions)
         {
         }
     }

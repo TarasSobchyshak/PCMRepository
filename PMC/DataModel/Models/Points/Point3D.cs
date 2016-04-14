@@ -4,7 +4,7 @@
     /// Represents a single numarical triple (x, y, z).
     /// </summary>
     /// <typeparam name="T">Values type.</typeparam>
-    public class Point3D<T> : Point2D<T>
+    public class Point3D<T> : Point2D<T> where T : struct
     {
         public Point3D() : base()
         {
@@ -19,6 +19,11 @@
         {
             private set;
             get;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("[{0}; {1}; {2}]", X, Y, Z);
         }
     }
 }

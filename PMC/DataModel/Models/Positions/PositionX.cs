@@ -1,13 +1,14 @@
 ﻿using DataModel.Models.Points;
-using System.Collections.Generic;
-using System;
-using System.Collections;
 
 namespace DataModel.Models.Positions
 {
-    public class PositionX<T> : Position<Point1D<T>, T>
+    public class PositionX<T> : Position<T> where T :struct
     {
-        public PositionX(Point1D<T>[] points) : base(points)
+        public PositionX(): base()
+        {
+            _points = new Point1D<T>[0];
+        }
+        public PositionX(params Point1D<T>[] points): base(points)
         {
         }
     }

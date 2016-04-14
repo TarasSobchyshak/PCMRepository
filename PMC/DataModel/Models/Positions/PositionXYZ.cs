@@ -2,9 +2,13 @@
 
 namespace DataModel.Models.Positions
 {
-    public class PositionXYZ<T> : Position<Point3D<T>, T>
+    public class PositionXYZ<T> : Position<T> where T : struct
     {
-        public PositionXYZ(Point3D<T>[] points) : base(points)
+        public PositionXYZ() : base()
+        {
+            _points = new Point3D<T>[0];
+        }
+        public PositionXYZ(params Point3D<T>[] points) : base(points)
         {
         }
     }

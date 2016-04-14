@@ -4,7 +4,7 @@
     /// Represents a single numarical value (x).
     /// </summary>
     /// <typeparam name="T">Value type.</typeparam>
-    public class Point1D<T> : IPoint<T>
+    public class Point1D<T> : Point<T> where T : struct
     {
         public Point1D()
         {
@@ -19,6 +19,11 @@
         {
             private set;
             get;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("[{0}]", X);
         }
     }
 }

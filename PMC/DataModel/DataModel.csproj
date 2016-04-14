@@ -42,11 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factories\IContainerFactory.cs" />
-    <Compile Include="Factories\IContainersCollectionFactory.cs" />
-    <Compile Include="Factories\IMatrixFactory.cs" />
-    <Compile Include="Factories\IPositionFactory.cs" />
-    <Compile Include="Models\Points\IPoint.cs" />
+    <Compile Include="Factories\Default\DefaultContainersCollectionFactory.cs" />
+    <Compile Include="Factories\Default\DefaultContainerFactory.cs" />
+    <Compile Include="Factories\Default\DefaultMatrixFactory.cs" />
+    <Compile Include="Factories\Default\DefaultPositionFactory.cs" />
+    <Compile Include="Factories\IFactories\IContainerFactory.cs" />
+    <Compile Include="Factories\IFactories\IContainersCollectionFactory.cs" />
+    <Compile Include="Factories\IFactories\IMatrixFactory.cs" />
+    <Compile Include="Factories\IFactories\IPositionFactory.cs" />
+    <Compile Include="Models\Points\Point.cs" />
     <Compile Include="Models\Container.cs" />
     <Compile Include="Models\ContainersCollection.cs" />
     <Compile Include="Models\Matrices\MatrixXYZ.cs" />

@@ -5,49 +5,33 @@ using System.Collections.Generic;
 namespace DataModel.Models.Positions
 {
     /// <summary>
-    /// Represents a strongly typed collection of points that can be accessed by index or via <see cref="IEnumerable"/>.
+    /// Represents a collection of points that can be accessed by index or via <see cref="IEnumerable"/>.
     /// </summary>
-    public abstract class Position<PointT, T> : IEnumerable<PointT> where PointT : IPoint<T>
+    public abstract class Position<T> : IEnumerable<Point<T>> where T : struct
     {
-        /// <summary>
-        /// Initializes a new instance of <see cref="Position{PointT, T}"/>
-        /// </summary>
         public Position()
         {
-            // position can contain 0 points
-            _points = new PointT[0];
         }
-        /// <summary>
-        /// Initializes a new instance of <see cref="Position{PointT, T}"/>
-        /// </summary>
-        /// <param name="points">A list whose elements are copied to new collection</param>
-        public Position(PointT[] points)
+        public Position(params Point<T>[] points)
         {
             _points = points;
         }
 
-        private PointT[] _points { set; get; }
+        protected Point<T>[] _points;
 
-        /// <summary>
-        /// Accessor for accessing data by index.
-        /// </summary>
-        public IPoint<T> this[int i]
+        public Point<T> this[int i]
         {
             get { return _points[i]; }
         }
 
-        /// <summary>
-        /// Accessor for accessing data via IEnumerable.
-        /// </summary>
-        public IEnumerator<PointT> GetEnumerator()
+        public IEnumerator<Point<T>> GetEnumerator()
         {
-            return ((IEnumerable<PointT>)_points).GetEnumerator();
+            return ((IEnumerable<Point<T>>)_points).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IEnumerable<PointT>)_points).GetEnumerator();
+            return _points.GetEnumerator();
         }
-
     }
 }
