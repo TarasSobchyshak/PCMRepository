@@ -1,12 +1,20 @@
 ﻿using DataModel.Factories.IFactories;
 using DataModel.Models.Points;
 using DataModel.Models.Positions;
-using System.Linq;
 
 namespace DataModel.Factories.Default
 {
-    public class DefaultPositionFactory<T> : IPositionFactory<T> where T : struct
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class DefaultPositionFactory<T> : IPositionFactory<T> 
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pointsCount"></param>
+        /// <returns></returns>
         public PositionX<T> CreatePositionX(int pointsCount)
         {
             var points = new Point1D<T>[pointsCount];
@@ -14,9 +22,14 @@ namespace DataModel.Factories.Default
             {
                 points[i] = new Point1D<T>();
             }
-            return new PositionX<T>(points.ToArray());
+            return new PositionX<T>(points);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pointsCount"></param>
+        /// <returns></returns>
         public PositionXY<T> CreatePositionXY(int pointsCount)
         {
             var points = new Point2D<T>[pointsCount];
@@ -24,9 +37,14 @@ namespace DataModel.Factories.Default
             {
                 points[i] = new Point2D<T>();
             }
-            return new PositionXY<T>(points.ToArray());
+            return new PositionXY<T>(points);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pointsCount"></param>
+        /// <returns></returns>
         public PositionXYZ<T> CreatePositionXYZ(int pointsCount)
         {
             var points = new Point3D<T>[pointsCount];
@@ -34,7 +52,7 @@ namespace DataModel.Factories.Default
             {
                 points[i] = new Point3D<T>();
             }
-            return new PositionXYZ<T>(points.ToArray());
+            return new PositionXYZ<T>(points);
         }
     }
 }

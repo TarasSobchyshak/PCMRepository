@@ -1,9 +1,21 @@
 ﻿using DataModel.Models;
+using System;
 
 namespace DataModel.Factories.IFactories
 {
-    public interface IContainerFactory<T> where T : struct
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public interface IContainerFactory<T> 
     {
-        Container<T> Create(int positionsCount, params int[][] pointsCount);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="types"></param>
+        /// <param name="positionsCount"></param>
+        /// <param name="pointsCount"></param>
+        /// <returns></returns>
+        Container<T> Create(Type[] types, int positionsCount, params int[][] pointsCount);
     }
 }

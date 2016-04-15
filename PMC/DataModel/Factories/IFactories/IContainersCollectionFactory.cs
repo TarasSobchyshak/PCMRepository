@@ -1,12 +1,22 @@
 ﻿using DataModel.Models;
-using DataModel.Models.Positions;
+using System;
 
 namespace DataModel.Factories.IFactories
 {
-    public interface IContainersCollectionFactory<T> where T : struct
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public interface IContainersCollectionFactory<T> 
     {
-        ContainersCollection<T> CreateWithEmptyContainers(int containersCount);
-        ContainersCollection<T> CreateWithEmptyMatrices(int containersCount, int matricesCount, int positionsCount, params int[] pointsCount);
-        ContainersCollection<T> CreateWithPositions(Position<T>[] positions);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="containersCount"></param>
+        /// <param name="types"></param>
+        /// <param name="positionsCount"></param>
+        /// <param name="pointsCount"></param>
+        /// <returns></returns>
+        ContainersCollection<T> Create(int containersCount, Type[] types, int positionsCount, params int[][] pointsCount);
     }
 }

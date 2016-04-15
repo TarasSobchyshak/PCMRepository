@@ -2,10 +2,31 @@
 
 namespace DataModel.Factories.IFactories
 {
-    public interface IPositionFactory<T> where T : struct
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public interface IPositionFactory<T> 
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pointsCount"></param>
+        /// <returns></returns>
         PositionX<T> CreatePositionX(int pointsCount);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pointsCount"></param>
+        /// <returns></returns>
         PositionXY<T> CreatePositionXY(int pointsCount);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pointsCount"></param>
+        /// <returns></returns>
         PositionXYZ<T> CreatePositionXYZ(int pointsCount);
     }
 }

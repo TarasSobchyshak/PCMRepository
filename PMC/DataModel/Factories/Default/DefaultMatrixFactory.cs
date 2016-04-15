@@ -4,8 +4,15 @@ using DataModel.Models.Positions;
 
 namespace DataModel.Factories.Default
 {
-    public class DefaultMatrixFactory<T> : IMatrixFactory<T> where T : struct
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class DefaultMatrixFactory<T> : IMatrixFactory<T> 
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public DefaultMatrixFactory()
         {
             _positionFactory = new DefaultPositionFactory<T>();
@@ -13,6 +20,12 @@ namespace DataModel.Factories.Default
 
         private IPositionFactory<T> _positionFactory;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="positionCount"></param>
+        /// <param name="pointsCount"></param>
+        /// <returns></returns>
         public MatrixX<T> CreateMatrixX(int positionCount, params int[] pointsCount)
         {
             var positions = new PositionX<T>[positionCount];
@@ -23,6 +36,12 @@ namespace DataModel.Factories.Default
             return new MatrixX<T>(positions);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="positionCount"></param>
+        /// <param name="pointsCount"></param>
+        /// <returns></returns>
         public MatrixXY<T> CreateMatrixXY(int positionCount, params int[] pointsCount)
         {
             var positions = new PositionXY<T>[positionCount];
@@ -33,6 +52,12 @@ namespace DataModel.Factories.Default
             return new MatrixXY<T>(positions);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="positionCount"></param>
+        /// <param name="pointsCount"></param>
+        /// <returns></returns>
         public MatrixXYZ<T> CreateMatrixXYZ(int positionCount, params int[] pointsCount)
         {
             var positions = new PositionXYZ<T>[positionCount];
