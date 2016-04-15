@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataModel.Models.Points;
-using DataModel.Models.Positions;
 using DataModel.Models.Matrices;
 using DataModel.Models;
-using System.Collections.Generic;
-using DataModel.Factories;
 using DataModel.Factories.Default;
 
 namespace PMCUnitTests
@@ -15,105 +11,106 @@ namespace PMCUnitTests
     public class ContainersCollectionTest
     {
         [TestMethod]
-        public void Testing()
+        public void PositionCountTest()
         {
-            //// Arrange
-
+            // Arrange
             var factory = new DefaultContainerFactory<int>();
+            const int positionCount = 3;
+            Type[] matricesSignatures = new Type[]
+            {
+                typeof(MatrixXYZ<>),
+                typeof(MatrixX<>),
+                typeof(MatrixXY<>),
+            };
+            int[][] pointsCountForMatricesAndPositions = new int[][]
+            {
+                new int[] { 5, 5, 5 },
+                Enumerable.Repeat(4,3).ToArray(),
+                new int[] { 3, 2, 5 }
+            };
 
-            Container<int> container = factory.Create(2, 
-                new int[][] 
-                {
-                    Enumerable.Repeat(1,2).ToArray(),
-                    Enumerable.Repeat(1,2).ToArray()
-                });
+            Container<int> container = factory.Create(matricesSignatures, positionCount, pointsCountForMatricesAndPositions);
 
-            //// Act
+            // Act
+            ContainersCollection<int> containersCollection = new ContainersCollection<int>(container);
         }
+
         [TestMethod]
-        //   [ExpectedException(typeof(ArgumentException))]
-        public void NumberOfPositionsTest()
+        [ExpectedException(typeof(ArgumentException))]
+        public void PositionXYZPointsCountTest()
         {
             //// Arrange
-            //var points = Enumerable.Range(1, 1).Select(r => new Point2D<double>(r, r));
-            //var positions = Enumerable.Range(1, 1)
-            //    .Select(r => new DefaultPositionFactory<double>().CreatePositionXY(1));
+            var factory = new DefaultContainerFactory<int>();
+            const int positionCount = 3;
+            Type[] matricesSignatures = new Type[]
+            {
+                typeof(MatrixX<>),
+                typeof(MatrixXY<>),
+                typeof(MatrixXYZ<>),
+                typeof(MatrixXY<>),
+                typeof(MatrixXY<>),
+                typeof(MatrixX<>),
+                typeof(MatrixXYZ<>),
+            };
+            int[][] pointsCountForMatricesAndPositions = new int[][]
+            {
+                new int[] { 300, 2223, 15 },
+                new int[] { 13, 0, 4 },
+                new int[] { 5, 5, 5 },
+                new int[] { 54, 823, 5 },
+                new int[] { 428, 5, 1 },
+                new int[] { 328, 2, 0 },
+                new int[] { 5, 56, 5 }
+            };
 
-            //var matrices = Enumerable.Range(1, 2)
-            //    .Select(r => new DefaultMatrixFactory<double>().CreateMatrixXY(15,2));
-
-            // var positions = Enumerable.Range(1, new Random().Next(15)).Select(r => new PositionXY<double>(points.ToArray()));
-            //   var matrices = Enumerable.Range(1, 10).Select(r => new MatrixXY<double>(positions.ToArray()));
-            var containers = Enumerable.Range(1, 1)
-                .Select(r => new Container<int>(
-                    new Matrix<int>[]
-                    {
-                        new MatrixXY<int>(new PositionXY<int>[2]
-                            { new PositionXY<int>(), new PositionXY<int>() }),
-                        new MatrixXY<int>(new PositionXY<int>[2]
-                            { new PositionXY<int>(), new PositionXY<int>() }),
-                        new MatrixXY<int>(new PositionXY<int>[2]
-                            { new PositionXY<int>(), new PositionXY<int>() }),
-                        new MatrixX<int>(new PositionX<int>[2]
-                            { new PositionX<int>(), new PositionX<int>() }),
-                        new MatrixXY<int>(new PositionXY<int>[2]
-                            { new PositionXY<int>(), new PositionXY<int>() }),
-                    }
-                    ));
-
-            //// Act
-            var containersColletion = new ContainersCollection<int>(containers.ToArray());
-        }
-        [TestMethod]
-        public void NumberOfPositionsXYZTest()
-        {
-            //// Arrange
-            //var points = Enumerable.Range(1, 10).Select(r => new Point3D<double>(r, r, r));
-            //var positions = Enumerable.Range(1, new Random().Next(10)).Select(r => new PositionXYZ<double>(points.ToArray()));
-            //var matrices = Enumerable.Range(1, 10).Select(r => new MatrixXYZ<double>(positions.ToArray()));
-            //var containers = Enumerable.Range(1, 10).Select(r => new Container<Point3D<double>, double>(matrices.ToArray()));
+            Container<int> container = factory.Create(matricesSignatures, positionCount, pointsCountForMatricesAndPositions);
 
             //// Act
-            //var containersColletion = new ContainersCollection<Point3D<double>, double>(containers.ToArray());
+            ContainersCollection<int> containersCollection = new ContainersCollection<int>(container);
         }
+
         [TestMethod]
         public void LargeDataTest()
         {
-            //// Arrange
+            // Arrange
+            var factory = new DefaultContainerFactory<int>();
+            int positionCount = 500;
+            Type[] types = new Type[50];
+            int[][] points = new int[types.Count()][];
+            Container<int>[] containers = new Container<int>[1000];
 
-            //// Act
-            //var m = new Container<Point1D<int>, int>(new Matrix<Point1D<int>, int>[] {
-            //    new Matrix<Point1D<int>, int>(new Position<Point1D<int>, int>[0])
-            //});
+            for (int i = 0; i < types.Length; ++i)
+            {
+                types[i] = typeof(MatrixXY<>);
+            }
+
+            for (int i = 0; i < points.Length; ++i)
+            {
+                points[i] = new int[positionCount];
+                for(int j = 0; j < positionCount; ++j) points[i][j] = 0;
+            }
+            for(int i = 0; i < containers.Length; ++i)
+            {
+                containers[i] = factory.Create(types, positionCount, points);
+            }
+
+            // Act
+            ContainersCollection<int> containersCollection = new ContainersCollection<int>(containers);
         }
-        //[TestMethod]
-        //[ExpectedException(typeof(ArgumentException))]
-        //public void NumberOfPositionsTest()
-        //{
-        //    // Arrange
-        //    var points = Enumerable.Range(1, 10).Select(r => new Point3D<double>(r, r, r));
-        //    var positions10 = Enumerable.Range(1, new Random().Next(10)).Select(r => new PositionXYZ<double>(points.ToArray()));
-        //    var positions11 = Enumerable.Range(1, new Random().Next(11)).Select(r => new PositionXYZ<double>(points.ToArray()));
-        //    var matrices = Enumerable.Range(1, 10).Select(r => new MatrixXYZ<double>(positions10.Union(positions11).ToArray()));
-        //    var containers = Enumerable.Range(1, 10).Select(r => new Container<Point3D<double>, double>(matrices.ToArray()));
-
-        //    // Act
-        //    var containersColletion = new ContainersCollection<Point3D<double>, double>(containers.ToArray());
-        //}
 
         [TestMethod]
-        [ExpectedException(typeof(ArrayTypeMismatchException))]
+        [ExpectedException(typeof(Exception))]
         public void NotNumericTypeTest()
         {
-            //// Arrange
-            //var points = Enumerable.Range(1, 10).Select(r => new Point1D<char>(Convert.ToChar(r)));
-            //var positions = Enumerable.Range(1, new Random().Next(10)).Select(r => new PositionX<char>(points.ToArray()));
-            //var matrices = Enumerable.Range(1, 10).Select(r => new MatrixX<char>(positions.ToArray()));
-            //var containers = Enumerable.Range(1, 10).Select(r => new Container<Point1D<char>, char>(matrices.ToArray()));
-
-            //// Act
-            //var containersColletion = new ContainersCollection<Point1D<char>, char>(containers.ToArray());
+            // Act
+            ContainersCollection<char> containersCollection = new ContainersCollection<char>(new Container<char>[0]);
         }
 
+        [TestMethod]
+        public void NumericTypeTest()
+        {
+            // Act
+            ContainersCollection<decimal> containersCollection = new ContainersCollection<decimal>(new Container<decimal>[0]);
+        }
     }
 }
