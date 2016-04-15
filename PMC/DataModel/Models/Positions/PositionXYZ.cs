@@ -1,4 +1,5 @@
 ﻿using DataModel.Models.Points;
+using System.Text;
 
 namespace DataModel.Models.Positions
 {
@@ -22,6 +23,21 @@ namespace DataModel.Models.Positions
         /// <param name="points"></param>
         public PositionXYZ(params Point3D<T>[] points) : base(points)
         {
+        }
+
+        /// <summary>
+        /// Represents a position in a string format
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Position:");
+            foreach (var c in _points)
+            {
+                sb.Append("\t").Append(c.ToString());
+            }
+            return sb.ToString();
         }
     }
 }

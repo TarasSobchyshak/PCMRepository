@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "DataModel\Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMCUnitTests", "PMCUnitTests\PMCUnitTests.csproj", "{39CBE0FE-4E64-448E-9EB5-FF8F3D7EDC26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientApplication", "ClientApplication\ClientApplication.csproj", "{B233FD85-EB4D-43A6-AE60-3050454D4806}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{39CBE0FE-4E64-448E-9EB5-FF8F3D7EDC26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39CBE0FE-4E64-448E-9EB5-FF8F3D7EDC26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39CBE0FE-4E64-448E-9EB5-FF8F3D7EDC26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B233FD85-EB4D-43A6-AE60-3050454D4806}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B233FD85-EB4D-43A6-AE60-3050454D4806}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B233FD85-EB4D-43A6-AE60-3050454D4806}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B233FD85-EB4D-43A6-AE60-3050454D4806}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

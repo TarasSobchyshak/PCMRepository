@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace DataModel.Models
 {
@@ -88,6 +89,21 @@ namespace DataModel.Models
         public Container<T> this[int i]
         {
             get { return _containers[i]; }
+        }
+
+        /// <summary>
+        /// Represents a containers collection in a string format
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Containers collection:");
+            foreach(var c in _containers)
+            {
+                sb.Append("\r\n\r\n\r\n").Append(c.ToString());
+            }
+            return sb.ToString();
         }
     }
 }

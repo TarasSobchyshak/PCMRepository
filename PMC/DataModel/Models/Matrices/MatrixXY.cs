@@ -1,4 +1,5 @@
 ﻿using DataModel.Models.Positions;
+using System.Text;
 
 namespace DataModel.Models.Matrices
 {
@@ -14,6 +15,21 @@ namespace DataModel.Models.Matrices
         /// <param name="positions"></param>
         public MatrixXY(params PositionXY<T>[] positions) : base(positions)
         {
+        }
+
+        /// <summary>
+        /// Represents a matrix in a string format
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Matrix:");
+            foreach (var c in _positions)
+            {
+                sb.Append("\r\n").Append(c.ToString());
+            }
+            return sb.ToString();
         }
     }
 }
