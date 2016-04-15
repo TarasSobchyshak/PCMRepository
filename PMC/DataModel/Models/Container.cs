@@ -7,7 +7,7 @@ namespace DataModel.Models
     /// <summary>
     /// Represents a strongly typed collection of matrices that can be accessed by index or via <see cref="IEnumerable"/>.
     /// </summary>
-    public class Container<T> : IEnumerable<Matrix<T>> where T : struct
+    public class Container<T> : IEnumerable<Matrix<T>> 
     {
         /// <summary>
         /// 

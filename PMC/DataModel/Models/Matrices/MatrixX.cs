@@ -2,8 +2,16 @@
 
 namespace DataModel.Models.Matrices
 {
-    public class MatrixX<T> : Matrix<T> where T: struct
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class MatrixX<T> : Matrix<T>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="positions"></param>
         public MatrixX(params PositionX<T>[] positions) : base(positions)
         {
         }

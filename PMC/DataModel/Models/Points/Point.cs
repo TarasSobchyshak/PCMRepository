@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public abstract class Point<T> where T : struct
+    public abstract class Point<T> 
     {
     }
 }
