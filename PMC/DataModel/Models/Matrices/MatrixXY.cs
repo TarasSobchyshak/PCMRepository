@@ -24,11 +24,15 @@ namespace DataModel.Models.Matrices
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("Matrix:");
-            foreach (var c in _positions)
+            sb.Append("Matrix:\r\n");
+            if (_positions.Length > 0)
             {
-                sb.Append("\r\n").Append(c.ToString());
+                foreach (var c in _positions)
+                {
+                    sb.Append("\r\n").Append(c.ToString());
+                }
             }
+            else sb.Append("\tNo positions");
             return sb.ToString();
         }
     }

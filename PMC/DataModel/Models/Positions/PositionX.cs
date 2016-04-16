@@ -12,7 +12,7 @@ namespace DataModel.Models.Positions
         /// <summary>
         /// 
         /// </summary>
-        public PositionX(): base()
+        public PositionX() : base()
         {
             _points = new Point1D<T>[0];
         }
@@ -21,7 +21,7 @@ namespace DataModel.Models.Positions
         /// 
         /// </summary>
         /// <param name="points"></param>
-        public PositionX(params Point1D<T>[] points): base(points)
+        public PositionX(params Point1D<T>[] points) : base(points)
         {
         }
 
@@ -33,10 +33,14 @@ namespace DataModel.Models.Positions
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Position:");
-            foreach (var c in _points)
+            if (_points.Length > 0)
             {
-                sb.Append("\t").Append(c.ToString());
+                foreach (var c in _points)
+                {
+                    sb.Append("\t").Append(c.ToString());
+                }
             }
+            else sb.Append("\tNo data points");
             return sb.ToString();
         }
     }

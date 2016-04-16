@@ -33,10 +33,14 @@ namespace DataModel.Models.Positions
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Position:");
-            foreach (var c in _points)
+            if (_points.Length > 0)
             {
-                sb.Append("\t").Append(c.ToString());
+                foreach (var c in _points)
+                {
+                    sb.Append("\t").Append(c.ToString());
+                }
             }
+            else sb.Append("\tNo data points");
             return sb.ToString();
         }
     }

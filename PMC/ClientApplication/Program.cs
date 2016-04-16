@@ -11,11 +11,12 @@ namespace ClientApplication
     {
         static void Main(string[] args)
         {
-            File.WriteAllText("data.txt","Example 1:\n");
-            File.WriteAllText("data.txt",ExampleOne().ToString());
-            File.WriteAllText("data.txt","Example 2:\n");
-            File.WriteAllText("data.txt",ExampleOne().ToString());
+            File.WriteAllText("data.txt", "Example 1:\n");
+            File.WriteAllText("data.txt", ExampleOne().ToString());
+            File.WriteAllText("data.txt", "Example 2:\n");
+            File.WriteAllText("data.txt", ExampleOne().ToString());
 
+            Console.Write("Open " + @Environment.CurrentDirectory + @"\data.txt to see results");
             Console.ReadKey();
         }
 
@@ -32,13 +33,14 @@ namespace ClientApplication
             Container<decimal>[] containers = new Container<decimal>[3];
 
             points[0] =
-                Enumerable.Concat(
-                    new int[] { 50, 200 }, 
-                    Enumerable.Repeat(0, positionCount - 2)).ToArray();
-            points[1] =
                     new int[] { 50, 200 }.Concat(
-                    Enumerable.Repeat(0, positionCount - 2)).ToArray();
-                
+                    Enumerable.Repeat(0, positionCount - 2)
+                    ).ToArray();
+            points[1] =
+                    new int[] { 4, 7 }.Concat(
+                    Enumerable.Repeat(0, positionCount - 2)
+                    ).ToArray();
+
 
             for (int i = 0; i < containers.Length; ++i)
             {
